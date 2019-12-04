@@ -2,15 +2,16 @@
 <html lang="en">
     <head>
         <title>Best burgers</title>
-		<script src="https://vuejs.org/js/vue.js"></script>
+		<script src="https://vuejs.org/js/vue.js"></script>  
+		<script src="/vue/vue.js" defer></script>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" href="css/deli-very.css">
 		<script src="js/js_script.js" defer></script>
 		<script src="js/menu.js" defer></script>
 		<script src="js/orderbutton.js" defer></script>
 		<script src="js/vue_script.js" defer></script>
-		<link rel="stylesheet" href="css/deli-very.css">
 		<script src="/socket.io/socket.io.js" defer></script>
-  <script src="js/deli-very.js" defer></script>
+  		<script src="js/deli-very.js" defer></script>
     </head>
     <body>
         <main>
@@ -44,7 +45,7 @@
 			
 					<div class="view-box">
     				<div id="dots" v-on:click="displayOrder">
-        		<div v-for="(order, key) in orders" v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
+        		<div v-for="order in current_order" v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
           {{key}}
 					</div>
 				</div>

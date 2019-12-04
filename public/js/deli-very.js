@@ -8,8 +8,10 @@ var vm = new Vue({
   el: '#dots',
   data: {
     orders: {},
+	  key: 'T',
+	 current_order: {}
   },
-  created: function () {
+	 created: function () {
     socket.on('initialize', function (data) {
       this.orders = data.orders;
     }.bind(this));
@@ -25,25 +27,26 @@ var vm = new Vue({
       }, 0);
       return lastOrder + 1;
     },
-    addOrder: function (event) {
-      var offset = {x: event.currentTarget.getBoundingClientRect().left,
-                    y: event.currentTarget.getBoundingClientRect().top};
-      socket.emit("addOrder", { orderId: this.getNext(),
-                                details: { x: event.clientX - 10 - offset.x,
-                                           y: event.clientY - 10 - offset.y },
-                                orderItems: ["Beans", "Curry"]
-                              });
-		
-		
+    addOrder: function (order) {
+		order.orderId = this.getNext()
+		console.log(order)
+            socket.emit("addOrder", { orderId: order.orderId,
+                                details: order.details,
+                                orderItems: order.orderItems,
+								orderPers: order.orderPers
+                              });	
     },
 	displayOrder: function(event){
 	var offset = {x: event.currentTarget.getBoundingClientRect().left, y: event.currentTarget.getBoundingClientRect().top};
-	  this.orders =            { orderId: 'T',
+	  var order =            { orderId: '',
                                 details: { x: event.clientX - 10 - offset.x,
                                            y: event.clientY - 10 - offset.y },
-                                orderItems: ["Beans", "Curry"]
+                                orderItems: [],
+							  	orderPers: []
                                 }
-	console.log("ata")
+	  	
+	this.current_order = [order]
+	//console.log(this.orders)		
 	}
 	}
 });
