@@ -1,9 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>DELI-VERY</title>
+        <title>Best burgers</title>
+		<script src="https://vuejs.org/js/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/js_script.js" defer></script>
+		<script src="js/menu.js" defer></script>
+		<script src="js/orderbutton.js" defer></script>
+		<script src="js/vue_script.js" defer></script>
+		<link rel="stylesheet" href="css/deli-very.css">
+		<script src="/socket.io/socket.io.js" defer></script>
+  <script src="js/deli-very.js" defer></script>
     </head>
     <body>
-        <h1>Hello World!!</h1>
+        <main>
+			<header>
+								<img src="img/resto.jpg" title="Best restaurang"/>
+				<h1>Best burgers in the world, period.</h1>
+
+			 </header>
+
+            <section id= "burger">
+                <h3> Select your burger :</h3>
+                                    <p>Here is the place where you can order and choose the best burger in the conrty, even the world..; Heck, the Galaxy ! Be careful though not every burger is vegan, lactose-free or gluten-free. At your own risks, ready set... go !</p>
+                <div class="wrapper" id ='MyID'>    
+				</div>      
+            </section>
+			
+            <section  id="contact">
+                <h3> Provide your informations below :</h3>
+                    <p>You want your burger and we want to deliver it to you !  To do so, please put your adresses and the other informations we need to get your tasteful meal right in time for your next episode of your favorite serie</p>
+				
+				<form>
+					<p>
+						<label for="Full name">Full name</label><br>
+						<input type="text" id="fullname" name="fn" required="required" placeholder="Full name">
+					</p>
+					<p>
+						<label for="email">E-mail</label><br>
+						<input type="text" id="email" name="em" required="required" placeholder="example@gmail.com">
+					</p>
+					
+			
+					<div class="view-box">
+    				<div id="dots" v-on:click="displayOrder">
+        		<div v-for="(order, key) in orders" v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
+          {{key}}
+					</div>
+				</div>
+				  </div>
+		
+
+					<p>
+					<label for="payment">Payment method</label><br>
+					<select id="payment" name="pa"  selected ="Cash">
+						<option >Credit Card</option>
+						<option>Check</option>
+						<option>Paypal</option>
+						<option selected>Cash</option>
+					</select>
+					</p>
+					<p>
+					Genre:<br>
+							<input type="radio" name="gender" value="Male">Male<br>
+    						<input type="radio" name="gender" value="Female">Female <br>
+    						<input type="radio" name="gender" value="Undisclosed" checked>Undisclosed 
+						
+					</p>
+					<div id = "results">
+					<button v-on:click="markDone(key)" type="submit" id = "bouton"><img src="img/icone.png">Order the best burger</button>
+					<br>
+					</div>
+				</form>
+				
+            </section>
+			
+        </main>
+        <footer>&copy; Bestburgers</footer>
     </body>
 </html>

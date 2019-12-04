@@ -41,7 +41,7 @@ function Data() {
 */
 Data.prototype.addOrder = function (order) {
   //Store the order in an "associative array" with orderId as key
-  this.orders[order.orderId] = order;
+this.orders[order.orderId] = order;
 };
 
 Data.prototype.getAllOrders = function () {
